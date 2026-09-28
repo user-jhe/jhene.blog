@@ -61,7 +61,8 @@ defmodule Bloguin.Tema do
   end
 
   # avalia o .eex do tema com os assigns; o engine padrão do EEx
-  # entende @variavel lendo direto da lista de bindings
+  # entende @variavel lendo da variável `assigns`, por isso a gente
+  # passa a lista inteira com esse nome
   defp avaliar(template, assigns) do
     caminho = Path.join([Bloguin.tema(), "#{template}.eex"])
 
@@ -69,6 +70,6 @@ defmodule Bloguin.Tema do
       raise "template #{caminho} não existe no tema #{Bloguin.tema()}"
     end
 
-    EEx.eval_file(caminho, assigns)
+    EEx.eval_file(caminho, assigns: assigns)
   end
 end
