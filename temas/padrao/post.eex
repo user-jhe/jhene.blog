@@ -2,16 +2,23 @@
      Variáveis: @post (%Bloguin.Post{}) -->
 <article class="post">
   <header>
+    <a class="voltar" href="/">-&gt; todos os posts</a>
     <h1><%= Bloguin.Tema.esc(@post.titulo) %></h1>
-    <p class="meta">
+    <div class="meta">
       <time datetime="<%= Date.to_iso8601(@post.data) %>">
-        <%= Calendar.strftime(@post.data, "%d/%m/%Y") %>
+        <%= Date.to_iso8601(@post.data) %>
       </time>
-      <%= for tag <- @post.tags do %>
-        <a class="tag" href="/tags/<%= tag %>/">#<%= tag %></a>
-      <% end %>
-    </p>
+    </div>
+    <%= if @post.tags != [] do %>
+      <div class="tags">
+        <%= for tag <- @post.tags do %>
+          <a class="tag" href="/tags/<%= tag %>/"><%= tag %></a>
+        <% end %>
+      </div>
+    <% end %>
   </header>
 
-  <%= @post.corpo %>
+  <div class="prose">
+    <%= @post.corpo %>
+  </div>
 </article>

@@ -1,7 +1,11 @@
 <!-- pagina.eex: uma página solta (sobre, contato...).
      Variáveis: @pagina (%Bloguin.Pagina{}) -->
 <article class="post">
-  <h1><%= Bloguin.Tema.esc(@pagina.titulo) %></h1>
+  <header>
+    <h1><%= Bloguin.Tema.esc(@pagina.titulo) %></h1>
+  </header>
 
-  <%= @pagina.corpo %>
+  <div class="prose">
+    <%= @pagina.corpo %>
+  </div>
 </article>

@@ -1,32 +1,94 @@
 /* estilo.css do tema padrão do bloguin
 
-   O jeito mais rápido de personalizar: mexe nas variáveis aqui em
-   cima e o site inteiro acompanha. O modo escuro vem de graça pela
-   preferência do sistema lá embaixo, sem uma linha de JavaScript. */
+   A paleta é derivada do nyxvamp-veil (github.com/zoedsoupe/nyxvamp):
+   escura por padrão, com as cores claras logo abaixo seguindo a
+   preferência do sistema. O jeito mais rápido de personalizar é
+   mexer nas variáveis aqui em cima - o site inteiro acompanha. */
 
-:root {
-  /* cores claras */
-  --fundo: #faf6f0;
-  --fundo-codigo: #f1eadd;
-  --texto: #2e2a25;
-  --texto-fraco: #7d7468;
-  --destaque: #9a5b24;
-  --borda: #e3d9c8;
-
-  /* tipografia: pilhas do sistema mesmo, nada de baixar fonte */
-  --fonte-texto: ui-serif, Georgia, serif;
-  --fonte-codigo: ui-monospace, "SF Mono", Menlo, monospace;
+/* fontes self-hosted: IBM Plex Serif pro texto, mononoki pra código
+   e títulos (ambas OFL, vivem em estatico/fonts/) */
+@font-face {
+  font-family: "IBM Plex Serif";
+  src: url("/fonts/ibm-plex-serif-var-Roman.woff2") format("woff2");
+  font-weight: 100 700;
+  font-style: normal;
+  font-display: swap;
 }
 
-/* modo escuro seguindo o sistema operacional */
-@media (prefers-color-scheme: dark) {
+@font-face {
+  font-family: "IBM Plex Serif";
+  src: url("/fonts/ibm-plex-serif-var-Italic.woff2") format("woff2");
+  font-weight: 100 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "mononoki";
+  src: url("/fonts/mononoki-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "mononoki";
+  src: url("/fonts/mononoki-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "mononoki";
+  src: url("/fonts/mononoki-Italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "mononoki";
+  src: url("/fonts/mononoki-BoldItalic.woff2") format("woff2");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light dark;
+
+  /* superfícies (a família veil escura) */
+  --fundo: #181825;
+  --fundo-elevado: #232334;
+  --borda: #2e2e3e;
+  --texto: #d9e0ee;
+
+  /* rosa veil é o destaque: links, títulos, detalhes */
+  --destaque: #f5c2e7;
+  --destaque-hover: #f28fad;
+
+  /* tudo que é secundário vira neutro acinzentado (sem arco-íris) */
+  --texto-fraco: #8e8aa8;
+  --texto-medio: #b7b3cc;
+
+  --fonte-texto: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+  --fonte-codigo: "mononoki", ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+/* esquema claro: mesmos matizes, luminância invertida, saturação
+   domada. Repare na inversão de papéis: o hover fica mais escuro
+   em vez de mais claro */
+@media (prefers-color-scheme: light) {
   :root {
-    --fundo: #1b1815;
-    --fundo-codigo: #26221d;
-    --texto: #e8e0d4;
-    --texto-fraco: #9a8f80;
-    --destaque: #d99a52;
-    --borda: #38322a;
+    --fundo: #f6f4fb;
+    --fundo-elevado: #ece8f5;
+    --borda: #dad4ea;
+    --texto: #38344a;
+    --destaque: #a0437c;
+    --destaque-hover: #7e3160;
+    --texto-fraco: #6e6a86;
+    --texto-medio: #55516b;
   }
 }
 
@@ -35,184 +97,362 @@
 }
 
 body {
-  margin: 0 auto;
-  padding: 0 1.25rem;
-  max-width: 42rem;
+  margin: 0;
   background: var(--fundo);
   color: var(--texto);
   font-family: var(--fonte-texto);
-  font-size: 1.125rem;
-  line-height: 1.7;
+  line-height: 1.6;
 }
 
-/* cabeçalho e rodapé */
-
-.cabecalho {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 1.5rem 0;
-  border-bottom: 1px solid var(--borda);
-  margin-bottom: 2.5rem;
-}
-
-.cabecalho .marca {
-  font-weight: bold;
-  font-size: 1.25rem;
-  text-decoration: none;
-  color: var(--texto);
-}
-
-.cabecalho nav a {
-  margin-left: 1rem;
-  color: var(--texto-fraco);
-  text-decoration: none;
-}
-
-.cabecalho nav a:hover {
-  color: var(--destaque);
-}
-
-.rodape {
-  margin-top: 4rem;
-  padding: 1.5rem 0;
-  border-top: 1px solid var(--borda);
-  color: var(--texto-fraco);
-  font-size: 0.9rem;
-}
-
-/* textos */
-
-a {
-  color: var(--destaque);
-}
-
-h1, h2, h3 {
+/* títulos em mono, minúsculos, apertadinhos */
+h1, h2, h3, h4 {
+  font-family: var(--fonte-codigo);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: lowercase;
   line-height: 1.25;
 }
 
-img {
-  max-width: 100%;
+a {
+  color: var(--destaque);
+  transition: color 0.2s;
 }
 
-blockquote {
-  margin: 0;
-  padding-left: 1rem;
-  border-left: 3px solid var(--borda);
-  color: var(--texto-fraco);
+a:hover {
+  color: var(--destaque-hover);
 }
 
-hr {
-  border: none;
-  border-top: 1px solid var(--borda);
-  margin: 2.5rem 0;
+/* anel de foco visível pra navegação por teclado */
+a:focus-visible {
+  outline: 2px solid var(--destaque);
+  outline-offset: 2px;
+  border-radius: 0.25rem;
 }
 
-/* código: inline e blocos */
+/* barra de rolagem estilo terminal: fina, quadrada, discreta */
+:root {
+  scrollbar-width: thin;
+  scrollbar-color: var(--borda) var(--fundo);
+}
 
-code {
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--fundo);
+  border-left: 1px solid var(--borda);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--borda);
+  border: 2px solid var(--fundo);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--destaque);
+}
+
+/* navegação do topo */
+
+.navegacao {
+  border-bottom: 1px solid var(--borda);
+}
+
+.nav-interna {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 1rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navegacao .marca {
   font-family: var(--fonte-codigo);
-  font-size: 0.875em;
-  background: var(--fundo-codigo);
-  padding: 0.15em 0.35em;
-  border-radius: 4px;
+  font-weight: 700;
+  color: var(--destaque);
+  text-decoration: none;
 }
 
-pre {
-  background: var(--fundo-codigo);
-  padding: 1rem;
-  border-radius: 8px;
-  overflow-x: auto;
+.navegacao nav a {
+  font-family: var(--fonte-codigo);
+  font-size: 0.875rem;
+  color: var(--texto-medio);
+  text-decoration: none;
+  margin-left: 1.25rem;
 }
 
-pre code {
-  padding: 0;
-  background: none;
+.navegacao nav a:hover {
+  color: var(--destaque);
 }
 
-/* cores do destaque de sintaxe (Makeup).
-   Os nomes de classe seguem os tokens do Pygments:
-   https://pygments.org/docs/tokens/ */
-.makeup .k,  /* palavra-chave (def, do, end...) */
-.makeup .kd {
-  color: #b3541e;
-  font-weight: bold;
+/* miolo da página */
+
+main {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 3rem 1.25rem;
 }
 
-.makeup .s,  /* strings */
-.makeup .ss, /* símbolos e átomos */
-.makeup .sc {
-  color: #5a7d2a;
-}
-
-.makeup .mi, /* números */
-.makeup .mf {
-  color: #2f6f9f;
-}
-
-.makeup .c,  /* comentários */
-.makeup .c1 {
+.rodape {
+  border-top: 1px solid var(--borda);
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem;
+  font-family: var(--fonte-codigo);
+  font-size: 0.875rem;
   color: var(--texto-fraco);
-  font-style: italic;
-}
-
-.makeup .nf, /* nome de função */
-.makeup .nc  /* nome de módulo */ {
-  color: #7c4d9e;
-}
-
-@media (prefers-color-scheme: dark) {
-  .makeup .k, .makeup .kd { color: #e08a4c; }
-  .makeup .s, .makeup .ss, .makeup .sc { color: #9ab86a; }
-  .makeup .mi, .makeup .mf { color: #7aa8cc; }
-  .makeup .nf, .makeup .nc { color: #b48fd6; }
 }
 
 /* listagens de posts (inicio.eex e tag.eex) */
 
-.titulo-secao {
-  margin-top: 0;
+.cabecalho-lista {
+  margin-bottom: 3rem;
+}
+
+.cabecalho-lista .caminho {
+  font-family: var(--fonte-codigo);
+  color: var(--destaque);
+  margin: 0 0 0.5rem;
+}
+
+.cabecalho-lista h1 {
+  font-size: 2.5rem;
+  color: var(--destaque);
+  margin: 0;
+}
+
+.cabecalho-lista .descricao {
+  color: var(--texto-medio);
+  margin-top: 1rem;
 }
 
 .lista-posts {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .lista-posts li {
-  margin-bottom: 1.75rem;
+  border-bottom: 1px solid var(--borda);
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
 }
 
 .lista-posts time {
-  display: block;
-  color: var(--texto-fraco);
-  font-size: 0.85rem;
+  font-family: var(--fonte-codigo);
+  font-size: 0.875rem;
+  color: var(--texto-medio);
 }
 
-.lista-posts a {
-  font-size: 1.2rem;
-  text-decoration: none;
-  color: var(--texto);
-}
-
-.lista-posts a:hover {
-  color: var(--destaque);
-}
-
-.lista-posts p {
+.lista-posts h2 {
+  font-size: 1.5rem;
   margin: 0.25rem 0 0;
-  color: var(--texto-fraco);
-  font-size: 0.95rem;
+}
+
+.lista-posts h2 a {
+  color: var(--destaque);
+  text-decoration: none;
+}
+
+.lista-posts h2 a:hover {
+  color: var(--destaque-hover);
+}
+
+.lista-posts .descricao {
+  margin: 0.5rem 0 0;
+}
+
+.lista-posts .tags {
+  margin-top: 0.75rem;
+}
+
+/* tags aparecem como "etiquetas" mono com bordinha */
+.tag {
+  font-family: var(--fonte-codigo);
+  font-size: 0.75rem;
+  color: var(--texto-medio);
+  text-decoration: none;
+  border: 1px solid var(--borda);
+  border-radius: 0.25rem;
+  padding: 0.1rem 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.tag:hover {
+  color: var(--destaque);
+  border-color: var(--destaque);
 }
 
 /* página do post */
 
-.post .meta {
-  color: var(--texto-fraco);
-  font-size: 0.9rem;
+.post > header {
+  border-bottom: 1px solid var(--borda);
+  padding-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
-.post .tag {
-  margin-left: 0.5rem;
+.post .voltar {
+  font-family: var(--fonte-codigo);
+  font-size: 0.875rem;
   text-decoration: none;
+}
+
+.post h1 {
+  font-size: 2.25rem;
+  color: var(--destaque);
+  margin: 1rem 0 0;
+}
+
+.post .meta {
+  font-family: var(--fonte-codigo);
+  font-size: 0.875rem;
+  color: var(--texto-medio);
+  margin-top: 1rem;
+}
+
+.post .tags {
+  margin-top: 0.75rem;
+}
+
+/* o corpo do texto (posts e páginas). Espaçamento generoso entre
+   blocos, largura de leitura confortável */
+.prose {
+  max-width: 68ch;
+}
+
+.prose > * + * {
+  margin-top: 1.25rem;
+}
+
+.prose h2, .prose h3 {
+  margin-top: 2.5rem;
+}
+
+.prose p {
+  line-height: 1.75;
+}
+
+.prose a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.prose blockquote {
+  margin: 0;
+  padding-left: 1rem;
+  border-left: 3px solid var(--destaque);
+  color: var(--texto-medio);
+  font-style: italic;
+}
+
+.prose ul, .prose ol {
+  padding-left: 1.5rem;
+}
+
+.prose li + li {
+  margin-top: 0.4rem;
+}
+
+.prose img {
+  max-width: 100%;
+  border-radius: 0.5rem;
+}
+
+.prose hr {
+  border: none;
+  border-top: 1px solid var(--borda);
+}
+
+/* código inline */
+.prose code {
+  font-family: var(--fonte-codigo);
+  font-size: 0.9em;
+  background: var(--fundo-elevado);
+  border: 1px solid var(--borda);
+  border-radius: 0.25rem;
+  padding: 0.1rem 0.35rem;
+  overflow-wrap: anywhere;
+}
+
+/* blocos de código ficam escuros nos dois esquemas (é o fundo veil
+   original - código colorido pede fundo escuro) */
+.prose pre {
+  background: #1e1e2e;
+  color: #d9e0ee;
+  border: 1px solid #2e2e3e;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #45455e transparent;
+}
+
+.prose pre code {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/* destaque de sintaxe: tokens do Makeup mapeados pro nyxvamp-veil.
+   Os nomes de classe seguem os tokens do Pygments:
+   https://pygments.org/docs/tokens/ */
+.makeup .c, .makeup .c1, .makeup .cm, .makeup .cp, .makeup .cs {
+  color: #6e6a86;
+  font-style: italic;
+}
+
+/* comentários */
+.makeup .k, .makeup .kd, .makeup .kn, .makeup .kp, .makeup .kr {
+  color: #f5c2e7;
+}
+
+/* palavras-chave */
+.makeup .kc, .makeup .no {
+  color: #f28fad;
+}
+
+/* constantes, booleanos, nil */
+.makeup .kt, .makeup .nc, .makeup .nn {
+  color: #c9cbff;
+}
+
+/* tipos, módulos, namespaces */
+.makeup .nf, .makeup .nb {
+  color: #96cdfb;
+}
+
+/* funções */
+.makeup .s, .makeup .s1, .makeup .s2, .makeup .sb, .makeup .sd, .makeup .sh, .makeup .sx {
+  color: #abe9b3;
+}
+
+/* strings */
+.makeup .si, .makeup .se, .makeup .ss {
+  color: #f28fad;
+}
+
+/* interpolação, escapes, átomos */
+.makeup .m, .makeup .mi, .makeup .mf, .makeup .mh, .makeup .mo, .makeup .il {
+  color: #f8bd96;
+}
+
+/* números */
+.makeup .na {
+  color: #f5c2e7;
+}
+
+/* atributos (@moduledoc e afins) */
+.makeup .o, .makeup .ow, .makeup .p, .makeup .n, .makeup .nv {
+  color: #d9e0ee;
+}
+
+/* operadores, pontuação, variáveis */
+
+/* quem pede menos movimento não recebe transição nenhuma */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
 }

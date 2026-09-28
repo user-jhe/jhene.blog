@@ -12,16 +12,18 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 </head>
 <body>
-  <header class="cabecalho">
-    <a class="marca" href="/"><%= Bloguin.Tema.esc(@site.titulo) %></a>
-    <nav>
-      <a href="/">posts</a>
-      <a href="/sobre/">sobre</a>
-      <a href="/rss.xml">rss</a>
-    </nav>
+  <header class="navegacao">
+    <div class="nav-interna">
+      <a class="marca" href="/">/<%= Bloguin.Tema.esc(@site.titulo) %></a>
+      <nav>
+        <a href="/">posts</a>
+        <a href="/sobre/">sobre</a>
+        <a href="/rss.xml">rss</a>
+      </nav>
+    </div>
   </header>
 
-  <main>
+  <main id="conteudo">
     <%= @conteudo %>
   </main>
 
