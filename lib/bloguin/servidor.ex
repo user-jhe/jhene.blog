@@ -48,7 +48,10 @@ defmodule Bloguin.Servidor do
     FileSystem.subscribe(vigia)
 
     IO.puts("\nbloguin no ar: http://localhost:#{@porta}")
-    IO.puts("editando algum arquivo em #{Enum.join(@vigiados, ", ")}? salva que ele reconstrói sozinho")
+
+    IO.puts(
+      "editando algum arquivo em #{Enum.join(@vigiados, ", ")}? salva que ele reconstrói sozinho"
+    )
 
     loop(vigia)
   end

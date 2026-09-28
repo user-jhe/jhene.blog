@@ -1,0 +1,46 @@
+# Deploy automático no GitHub Pages: cada push na main constrói
+# o site e publica. Pra ativar, vai em Settings -> Pages e muda
+# a fonte pra "GitHub Actions".
+name: deploy
+
+on:
+  push:
+    branches: [main]
+  # permite rodar na mão pela aba Actions
+  workflow_dispatch:
+
+permissions:
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: erlef/setup-beam@v1
+        with:
+          elixir-version: "1.20.3"
+          otp-version: "29.1.1"
+
+      # cache das dependências pra build não baixar tudo toda vez
+      - uses: actions/cache@v4
+        with:
+          path: |
+            deps
+            _build
+          key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
+
+      - run: mix deps.get
+      - run: mix bloguin.construir
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
