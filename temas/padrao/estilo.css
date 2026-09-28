@@ -1,0 +1,218 @@
+/* estilo.css do tema padrão do bloguin
+
+   O jeito mais rápido de personalizar: mexe nas variáveis aqui em
+   cima e o site inteiro acompanha. O modo escuro vem de graça pela
+   preferência do sistema lá embaixo, sem uma linha de JavaScript. */
+
+:root {
+  /* cores claras */
+  --fundo: #faf6f0;
+  --fundo-codigo: #f1eadd;
+  --texto: #2e2a25;
+  --texto-fraco: #7d7468;
+  --destaque: #9a5b24;
+  --borda: #e3d9c8;
+
+  /* tipografia: pilhas do sistema mesmo, nada de baixar fonte */
+  --fonte-texto: ui-serif, Georgia, serif;
+  --fonte-codigo: ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+/* modo escuro seguindo o sistema operacional */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fundo: #1b1815;
+    --fundo-codigo: #26221d;
+    --texto: #e8e0d4;
+    --texto-fraco: #9a8f80;
+    --destaque: #d99a52;
+    --borda: #38322a;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  max-width: 42rem;
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: var(--fonte-texto);
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+/* cabeçalho e rodapé */
+
+.cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--borda);
+  margin-bottom: 2.5rem;
+}
+
+.cabecalho .marca {
+  font-weight: bold;
+  font-size: 1.25rem;
+  text-decoration: none;
+  color: var(--texto);
+}
+
+.cabecalho nav a {
+  margin-left: 1rem;
+  color: var(--texto-fraco);
+  text-decoration: none;
+}
+
+.cabecalho nav a:hover {
+  color: var(--destaque);
+}
+
+.rodape {
+  margin-top: 4rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--borda);
+  color: var(--texto-fraco);
+  font-size: 0.9rem;
+}
+
+/* textos */
+
+a {
+  color: var(--destaque);
+}
+
+h1, h2, h3 {
+  line-height: 1.25;
+}
+
+img {
+  max-width: 100%;
+}
+
+blockquote {
+  margin: 0;
+  padding-left: 1rem;
+  border-left: 3px solid var(--borda);
+  color: var(--texto-fraco);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--borda);
+  margin: 2.5rem 0;
+}
+
+/* código: inline e blocos */
+
+code {
+  font-family: var(--fonte-codigo);
+  font-size: 0.875em;
+  background: var(--fundo-codigo);
+  padding: 0.15em 0.35em;
+  border-radius: 4px;
+}
+
+pre {
+  background: var(--fundo-codigo);
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+pre code {
+  padding: 0;
+  background: none;
+}
+
+/* cores do destaque de sintaxe (Makeup).
+   Os nomes de classe seguem os tokens do Pygments:
+   https://pygments.org/docs/tokens/ */
+.makeup .k,  /* palavra-chave (def, do, end...) */
+.makeup .kd {
+  color: #b3541e;
+  font-weight: bold;
+}
+
+.makeup .s,  /* strings */
+.makeup .ss, /* símbolos e átomos */
+.makeup .sc {
+  color: #5a7d2a;
+}
+
+.makeup .mi, /* números */
+.makeup .mf {
+  color: #2f6f9f;
+}
+
+.makeup .c,  /* comentários */
+.makeup .c1 {
+  color: var(--texto-fraco);
+  font-style: italic;
+}
+
+.makeup .nf, /* nome de função */
+.makeup .nc  /* nome de módulo */ {
+  color: #7c4d9e;
+}
+
+@media (prefers-color-scheme: dark) {
+  .makeup .k, .makeup .kd { color: #e08a4c; }
+  .makeup .s, .makeup .ss, .makeup .sc { color: #9ab86a; }
+  .makeup .mi, .makeup .mf { color: #7aa8cc; }
+  .makeup .nf, .makeup .nc { color: #b48fd6; }
+}
+
+/* listagens de posts (inicio.eex e tag.eex) */
+
+.titulo-secao {
+  margin-top: 0;
+}
+
+.lista-posts {
+  list-style: none;
+  padding: 0;
+}
+
+.lista-posts li {
+  margin-bottom: 1.75rem;
+}
+
+.lista-posts time {
+  display: block;
+  color: var(--texto-fraco);
+  font-size: 0.85rem;
+}
+
+.lista-posts a {
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: var(--texto);
+}
+
+.lista-posts a:hover {
+  color: var(--destaque);
+}
+
+.lista-posts p {
+  margin: 0.25rem 0 0;
+  color: var(--texto-fraco);
+  font-size: 0.95rem;
+}
+
+/* página do post */
+
+.post .meta {
+  color: var(--texto-fraco);
+  font-size: 0.9rem;
+}
+
+.post .tag {
+  margin-left: 0.5rem;
+  text-decoration: none;
+}

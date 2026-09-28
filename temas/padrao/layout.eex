@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!-- layout.eex: a casca de todas as páginas do site.
+     Variáveis disponíveis: @site, @titulo_pagina, @descricao, @conteudo -->
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= if @titulo_pagina, do: "#{Bloguin.Tema.esc(@titulo_pagina)} · " %><%= Bloguin.Tema.esc(@site.titulo) %></title>
+  <meta name="description" content="<%= Bloguin.Tema.esc(@descricao) %>">
+  <link rel="stylesheet" href="/estilo.css">
+  <link rel="alternate" type="application/rss+xml" title="<%= Bloguin.Tema.esc(@site.titulo) %>" href="/rss.xml">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header class="cabecalho">
+    <a class="marca" href="/"><%= Bloguin.Tema.esc(@site.titulo) %></a>
+    <nav>
+      <a href="/">posts</a>
+      <a href="/sobre/">sobre</a>
+      <a href="/rss.xml">rss</a>
+    </nav>
+  </header>
+
+  <main>
+    <%= @conteudo %>
+  </main>
+
+  <footer class="rodape">
+    <p>feito por <%= Bloguin.Tema.esc(@site.autor) %> com <a href="https://github.com/zoedsoupe/bloguin">bloguin</a></p>
+  </footer>
+</body>
+</html>

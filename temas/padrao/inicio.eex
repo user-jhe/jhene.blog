@@ -1,0 +1,17 @@
+<!-- inicio.eex: a listagem de posts da página inicial.
+     Variáveis: @posts (lista de %Bloguin.Post{}, do mais novo pro mais velho) -->
+<h1 class="titulo-secao">posts</h1>
+
+<ul class="lista-posts">
+  <%= for post <- @posts do %>
+    <li>
+      <time datetime="<%= Date.to_iso8601(post.data) %>">
+        <%= Calendar.strftime(post.data, "%d/%m/%Y") %>
+      </time>
+      <a href="<%= Bloguin.Post.caminho(post) %>"><%= Bloguin.Tema.esc(post.titulo) %></a>
+      <%= if post.descricao != "" do %>
+        <p><%= Bloguin.Tema.esc(post.descricao) %></p>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
