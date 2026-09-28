@@ -13,9 +13,10 @@ defmodule Bloguin.MixProject do
 
   # Sem aplicação OTP: o bloguin é um conjunto de mix tasks que geram
   # arquivos estáticos, não tem nada rodando em produção.
+  # (:inets entra pro servidor de desenvolvimento do bloguin.servir)
   def application do
     [
-      extra_applications: [:logger]
+      extra_applications: [:logger, :inets]
     ]
   end
 
