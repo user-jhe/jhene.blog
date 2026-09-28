@@ -15,8 +15,6 @@ defmodule Bloguin.Servidor do
   disco, a página nova já está no ar no próximo refresh.
   """
 
-  require Logger
-
   @porta 4000
   @vigiados ["conteudo", "temas", "config"]
 
