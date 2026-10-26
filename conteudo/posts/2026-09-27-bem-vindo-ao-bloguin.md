@@ -1,7 +1,8 @@
 %{
   titulo: "Bem-vindo ao seu bloguin",
   descricao: "O tour guiado: o que tem nesse repo e como colocar seu blog no ar em cinco minutos.",
-  tags: ~w(bloguin)
+  tags: ~w(bloguin),
+  rascunho: true
 }
 ---
 Senta que lá vem história... brincadeira, dessa vez é rapidinho: esse repositório é o seu blog. Sério, ele inteiro. O bloguin é um gerador de blog estático escrito em Elixir, feito pra você ler o código fonte inteiro numa sentada e entender cada linha.

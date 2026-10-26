@@ -114,7 +114,6 @@ h4 {
   font-family: var(--fonte-codigo);
   font-weight: 700;
   letter-spacing: -0.02em;
-  text-transform: lowercase;
   line-height: 1.25;
 }
 

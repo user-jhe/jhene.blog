@@ -1,7 +1,8 @@
 %{
   titulo: "Escrevendo seu primeiro post",
   descricao: "Frontmatter, markdown, rascunhos e tags: tudo que cabe num arquivo de post do bloguin.",
-  tags: ~w(bloguin tutorial)
+  tags: ~w(bloguin tutorial),
+  rascunho: true
 }
 ---
 Um post do bloguin é um arquivo de texto com duas partes. Vamos abrir um por dentro.

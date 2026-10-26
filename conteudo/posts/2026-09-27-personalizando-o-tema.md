@@ -1,7 +1,8 @@
 %{
   titulo: "Personalizando o tema",
   descricao: "Variáveis de CSS, templates EEx e como criar um tema seu sem medo de quebrar nada.",
-  tags: ~w(bloguin tutorial css)
+  tags: ~w(bloguin tutorial css),
+  rascunho: true
 }
 ---
 A cara do bloguin mora inteirinha em `temas/padrao/`. Não tem framework de CSS, não tem build de assets, não tem JavaScript. É um arquivo `.css` e uns templates `.eex`, e você pode mudar tudo.
