@@ -56,17 +56,18 @@
 }
 
 :root {
-  color-scheme: light dark;
+  /* color-scheme: light dark; */
+  color-scheme: dark;
 
   /* superfícies (a família veil escura) */
-  --fundo: #181825;
+  --fundo: #151515;
   --fundo-elevado: #232334;
   --borda: #2e2e3e;
-  --texto: #d9e0ee;
+  --texto: #b8bece;
 
-  /* rosa veil é o destaque: links, títulos, detalhes */
-  --destaque: #f5c2e7;
-  --destaque-hover: #f28fad;
+  /* rosa veil é o destaque: links, títulos, detalhes ff9a56 */
+  --destaque-hover: #fba66e;
+  --destaque: #f586b0;
 
   /* tudo que é secundário vira neutro acinzentado (sem arco-íris) */
   --texto-fraco: #8e8aa8;
@@ -79,7 +80,7 @@
 /* esquema claro: mesmos matizes, luminância invertida, saturação
    domada. Repare na inversão de papéis: o hover fica mais escuro
    em vez de mais claro */
-@media (prefers-color-scheme: light) {
+/* @media (prefers-color-scheme: light) {
   :root {
     --fundo: #f6f4fb;
     --fundo-elevado: #ece8f5;
@@ -90,7 +91,7 @@
     --texto-fraco: #6e6a86;
     --texto-medio: #55516b;
   }
-}
+} */
 
 * {
   box-sizing: border-box;
@@ -105,7 +106,11 @@ body {
 }
 
 /* títulos em mono, minúsculos, apertadinhos */
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
+  color: #ff5697;
   font-family: var(--fonte-codigo);
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -173,6 +178,7 @@ a:focus-visible {
   font-weight: 700;
   color: var(--destaque);
   text-decoration: none;
+  color: var(--destaque-hover);
 }
 
 .navegacao nav a {
@@ -275,14 +281,14 @@ main {
   color: var(--texto-medio);
   text-decoration: none;
   border: 1px solid var(--borda);
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
   padding: 0.1rem 0.5rem;
   margin-right: 0.5rem;
 }
 
 .tag:hover {
-  color: var(--destaque);
-  border-color: var(--destaque);
+  color: #ffb888;
+  border-color: #ffb888;
 }
 
 /* página do post */
@@ -297,12 +303,17 @@ main {
   font-family: var(--fonte-codigo);
   font-size: 0.875rem;
   text-decoration: none;
+  color: var(--texto-medio);
+}
+
+.post .voltar:hover {
+  color: var(--destaque-hover);
 }
 
 .post h1 {
   font-size: 2.25rem;
-  color: var(--destaque);
   margin: 1rem 0 0;
+  color: var(--destaque);
 }
 
 .post .meta {
@@ -326,8 +337,10 @@ main {
   margin-top: 1.25rem;
 }
 
-.prose h2, .prose h3 {
+.prose h2,
+.prose h3 {
   margin-top: 2.5rem;
+  color: var(--destaque-hover);
 }
 
 .prose p {
@@ -337,6 +350,7 @@ main {
 .prose a {
   text-decoration: underline;
   text-underline-offset: 3px;
+  color: var(--destaque-hover);
 }
 
 .prose blockquote {
@@ -347,7 +361,8 @@ main {
   font-style: italic;
 }
 
-.prose ul, .prose ol {
+.prose ul,
+.prose ol {
   padding-left: 1.5rem;
 }
 
@@ -398,43 +413,68 @@ main {
 /* destaque de sintaxe: tokens do Makeup mapeados pro nyxvamp-veil.
    Os nomes de classe seguem os tokens do Pygments:
    https://pygments.org/docs/tokens/ */
-.makeup .c, .makeup .c1, .makeup .cm, .makeup .cp, .makeup .cs {
+.makeup .c,
+.makeup .c1,
+.makeup .cm,
+.makeup .cp,
+.makeup .cs {
   color: #6e6a86;
   font-style: italic;
 }
 
 /* comentários */
-.makeup .k, .makeup .kd, .makeup .kn, .makeup .kp, .makeup .kr {
+.makeup .k,
+.makeup .kd,
+.makeup .kn,
+.makeup .kp,
+.makeup .kr {
   color: #f5c2e7;
 }
 
 /* palavras-chave */
-.makeup .kc, .makeup .no {
+.makeup .kc,
+.makeup .no {
   color: #f28fad;
 }
 
 /* constantes, booleanos, nil */
-.makeup .kt, .makeup .nc, .makeup .nn {
+.makeup .kt,
+.makeup .nc,
+.makeup .nn {
   color: #c9cbff;
 }
 
 /* tipos, módulos, namespaces */
-.makeup .nf, .makeup .nb {
+.makeup .nf,
+.makeup .nb {
   color: #96cdfb;
 }
 
 /* funções */
-.makeup .s, .makeup .s1, .makeup .s2, .makeup .sb, .makeup .sd, .makeup .sh, .makeup .sx {
+.makeup .s,
+.makeup .s1,
+.makeup .s2,
+.makeup .sb,
+.makeup .sd,
+.makeup .sh,
+.makeup .sx {
   color: #abe9b3;
 }
 
 /* strings */
-.makeup .si, .makeup .se, .makeup .ss {
+.makeup .si,
+.makeup .se,
+.makeup .ss {
   color: #f28fad;
 }
 
 /* interpolação, escapes, átomos */
-.makeup .m, .makeup .mi, .makeup .mf, .makeup .mh, .makeup .mo, .makeup .il {
+.makeup .m,
+.makeup .mi,
+.makeup .mf,
+.makeup .mh,
+.makeup .mo,
+.makeup .il {
   color: #f8bd96;
 }
 
@@ -444,7 +484,11 @@ main {
 }
 
 /* atributos (@moduledoc e afins) */
-.makeup .o, .makeup .ow, .makeup .p, .makeup .n, .makeup .nv {
+.makeup .o,
+.makeup .ow,
+.makeup .p,
+.makeup .n,
+.makeup .nv {
   color: #d9e0ee;
 }
 

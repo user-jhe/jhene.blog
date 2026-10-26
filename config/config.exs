@@ -5,11 +5,11 @@ import Config
 
 config :bloguin,
   # aparece no cabeçalho, no <title> e no feed RSS
-  titulo_do_site: "meu bloguin",
-  autor: "seu nome aqui",
-  # usada na meta description e no RSS
-  descricao: "um blog feito com bloguin",
+  titulo_do_site: "jhene.blog",
+  autor: "jhene.",
+  # usada na meta description e no RSS <span style=\"color: #f586b0\">&lt;
+  descricao: "um blog feito com <3 e com bloguin",
   # URL pública do site (sem barra no final), usada no RSS e no sitemap
-  url: "https://exemplo.dev",
+  url: "https://jhene.blog",
   # diretório do tema: templates .eex + estilo.css + estatico/
   tema: "temas/padrao"

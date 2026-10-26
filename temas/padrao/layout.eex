@@ -14,11 +14,9 @@
 <body>
   <header class="navegacao">
     <div class="nav-interna">
-      <a class="marca" href="/">/<%= Bloguin.Tema.esc(@site.titulo) %></a>
+      <a class="marca" href="/"><%= Bloguin.Tema.esc(@site.titulo) %></a>
       <nav>
-        <a href="/">posts</a>
         <a href="/sobre/">sobre</a>
-        <a href="/rss.xml">rss</a>
       </nav>
     </div>
   </header>
